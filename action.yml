@@ -1,0 +1,28 @@
+name: 'Telegram Notification'
+description: 'Send deployment status notifications to Telegram'
+inputs:
+  token:
+    description: 'Telegram bot token'
+    required: true
+  chatId:
+    description: 'Telegram chat id'
+    required: true
+  status:
+    description: 'Deployment status (success or failure)'
+    required: true
+  githubDataBase64:
+    description: 'Base64 encoded GitHub event data'
+    required: true
+  errorMessage:
+    description: 'Error message in case of failure'
+    required: false
+    default: ''
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.token }}
+    - ${{ inputs.chatId }}
+    - ${{ inputs.status }}
+    - ${{ inputs.githubDataBase64 }}
+    - ${{ inputs.errorMessage }}
