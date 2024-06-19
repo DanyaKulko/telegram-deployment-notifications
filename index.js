@@ -1,9 +1,11 @@
 const axios = require('axios');
 const core = require('@actions/core');
+const { context } = require('@actions/github');
 
 async function sendNotification() {
     try {
-        console.log(process.env);
+        core.debug(`payload=${JSON.stringify(context.payload)}`);
+
         const token = core.getInput('token', { required: true });
         const chatId = core.getInput('chatId', { required: true });
         const status = core.getInput('status', { required: true });
