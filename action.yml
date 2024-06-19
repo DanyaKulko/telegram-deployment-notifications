@@ -18,11 +18,5 @@ inputs:
     required: false
     default: ''
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.token }}
-    - ${{ inputs.chatId }}
-    - ${{ inputs.status }}
-    - ${{ inputs.githubDataBase64 }}
-    - ${{ inputs.errorMessage }}
+  using: 'node20'
+  main: 'dist/index.js'
