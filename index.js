@@ -5,18 +5,22 @@ const { context } = require('@actions/github');
 async function sendNotification() {
     try {
         core.debug(`payload=${JSON.stringify(context.payload)}`);
-        console.log(`payload=${JSON.stringify(context.payload)}`);
 
         const token = core.getInput('token', { required: true });
         const chatId = +core.getInput('chatId', { required: true });
         const status = core.getInput('status', { required: true });
         const errorMessage = core.getInput('errorMessage', { required: false });
 
+        core.debug(`token=${token}`);
+        core.debug(`chatId=${chatId}`);
+
         await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
             chat_id: chatId,
             text: JSON.stringify(context.payload),
             parse_mode: 'HTML',
-        });
+        }).catch((error) => {
+            core.debug(`Error sending message: ${error}`);
+        })
 
         const githubData = context.payload;
 
