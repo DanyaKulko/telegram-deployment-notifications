@@ -38141,12 +38141,19 @@ const { context } = __nccwpck_require__(9762);
 async function sendNotification() {
     try {
         core.debug(`payload=${JSON.stringify(context.payload)}`);
+        console.log(`payload=${JSON.stringify(context.payload)}`);
 
         const token = core.getInput('token', { required: true });
         const chatId = core.getInput('chatId', { required: true });
-        const status = core.getInput('status', { required: true });
-        const githubDataBase64 = core.getInput('githubDataBase64', { required: true });
+        const status = core.getInput('status', { required: false });
+        const githubDataBase64 = core.getInput('githubDataBase64', { required: false });
         const errorMessage = core.getInput('errorMessage', { required: false });
+
+        await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+            chat_id: chatId,
+            text: JSON.stringify(context.payload),
+            parse_mode: 'HTML',
+        });
 
         const githubDataJson = Buffer.from(githubDataBase64, 'base64').toString();
         const githubData = JSON.parse(githubDataJson);
