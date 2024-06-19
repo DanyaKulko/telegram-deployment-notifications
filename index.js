@@ -3,7 +3,6 @@ const core = require('@actions/core');
 
 async function sendNotification() {
     try {
-
         console.log(process.env);
         const token = core.getInput('token', { required: true });
         const chatId = core.getInput('chatId', { required: true });
@@ -37,4 +36,4 @@ async function sendNotification() {
     }
 }
 
-sendNotification(token, chatId, status, githubDataBase64, errorMessage);
+sendNotification();
