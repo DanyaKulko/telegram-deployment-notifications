@@ -5,6 +5,7 @@ const { context } = require('@actions/github');
 async function sendNotification() {
     try {
         core.debug(`payload=${JSON.stringify(context.payload)}`);
+        console.log(`payload=${JSON.stringify(context.payload)}`);
 
         const token = core.getInput('token', { required: true });
         const chatId = core.getInput('chatId', { required: true });
