@@ -9,10 +9,10 @@ inputs:
     required: true
   status:
     description: 'Deployment status (success or failure)'
-    required: true
+    required: false
   githubDataBase64:
     description: 'Base64 encoded GitHub event data'
-    required: true
+    required: false
   errorMessage:
     description: 'Error message in case of failure'
     required: false
