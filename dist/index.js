@@ -38149,7 +38149,7 @@ async function sendNotification() {
 
         const headerMessagePart = status === 'success' ?
             `✅ <b>Deployment successful on branch:</b> <i>${githubData.ref.split('/').pop()}</i>` :
-            `❌ <b>Deployment failed on branch:</b> <i>${githubData.ref.split('/').pop()}</i>\n\n<a href="${githubData.repository.html_url}/actions/runs/${githubData.deployment_status.runId}">Error details</a>`;
+            `❌ <b>Deployment failed on branch:</b> <i>${githubData.ref.split('/').pop()}</i>\n\n<a href="${githubData.repository.html_url}/actions/runs/${runId}">Error details</a>`;
 
         const numbers = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟'];
         const commitsList = githubData.commits.map((commit, index) => `  ${numbers[index]} <u><a href="${commit.url}">${commit.message}</a></u>`).join('\n');
