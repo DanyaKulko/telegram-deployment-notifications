@@ -10,10 +10,6 @@ inputs:
   status:
     description: 'Deployment status (success or failure)'
     required: false
-  errorMessage:
-    description: 'Error message in case of failure'
-    required: false
-    default: ''
 runs:
   using: 'node20'
   main: 'dist/index.js'
