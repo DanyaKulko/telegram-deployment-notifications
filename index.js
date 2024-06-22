@@ -10,6 +10,8 @@ async function sendNotification() {
 
         const githubData = context.payload;
 
+        core.info(JSON.stringify(githubData));
+        console.log(JSON.stringify(githubData));
         core.setFailed(JSON.stringify(githubData));
         return;
         const headerMessagePart = status === 'success' ?
