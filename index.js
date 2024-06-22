@@ -25,7 +25,7 @@ async function sendNotification() {
         const message = `${headerMessagePart}\n${repositoryMessagePart}\n\n${commitsMessagePart}\n\n${byMessagePart}`;
 
 
-        const reply_markup = status === 'failure' && {
+        const reply_markup = status === 'failure' ? {
             inline_keyboard: [
                 [
                     {
@@ -34,7 +34,7 @@ async function sendNotification() {
                     }
                 ]
             ]
-        }
+        } : {}
 
         await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
             chat_id: chatId,
