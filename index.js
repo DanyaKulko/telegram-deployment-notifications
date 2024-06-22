@@ -11,7 +11,6 @@ async function sendNotification() {
         const githubData = context.payload;
 
         core.info(JSON.stringify(process.env));
-        console.log(JSON.stringify(process.env));
         core.setFailed('1');
         return;
         const headerMessagePart = status === 'success' ?
