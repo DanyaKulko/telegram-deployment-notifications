@@ -10,7 +10,8 @@ async function sendNotification() {
 
         const githubData = context.payload;
 
-
+        core.setFailed(JSON.stringify(githubData));
+        return;
         const headerMessagePart = status === 'success' ?
             `✅ <b>Deployment successful on branch:</b> <i>${githubData.ref.split('/').pop()}</i>` :
             `❌ <b>Deployment failed on branch:</b> <i>${githubData.ref.split('/').pop()}</i>\n\n<b>Message:</b> <i>${githubData.deployment_status.description}</i>\n\n<b>link to action</b>: <a href="${githubData.deployment_status.target_url}">click here</a>`;
