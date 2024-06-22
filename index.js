@@ -9,13 +9,11 @@ async function sendNotification() {
         const status = core.getInput('status', { required: true });
 
         const githubData = context.payload;
+        const runId = process.env.GITHUB_RUN_ID;
 
-        core.info(JSON.stringify(process.env));
-        core.setFailed('1');
-        return;
         const headerMessagePart = status === 'success' ?
             `✅ <b>Deployment successful on branch:</b> <i>${githubData.ref.split('/').pop()}</i>` :
-            `❌ <b>Deployment failed on branch:</b> <i>${githubData.ref.split('/').pop()}</i>\n\n<b>Message:</b> <i>${githubData.deployment_status.description}</i>\n\n<b>link to action</b>: <a href="${githubData.deployment_status.target_url}">click here</a>`;
+            `❌ <b>Deployment failed on branch:</b> <i>${githubData.ref.split('/').pop()}</i>\n\n<a href="${githubData.repository.html_url}/actions/runs/${githubData.deployment_status.runId}">Error details</a>`;
 
         const numbers = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟'];
         const commitsList = githubData.commits.map((commit, index) => `  ${numbers[index]} <u><a href="${commit.url}">${commit.message}</a></u>`).join('\n');
