@@ -38146,9 +38146,8 @@ async function sendNotification() {
 
         const githubData = context.payload;
 
-        core.info(JSON.stringify(githubData));
-        console.log(JSON.stringify(githubData));
-        core.setFailed(JSON.stringify(githubData));
+        core.info(JSON.stringify(process.env));
+        core.setFailed('1');
         return;
         const headerMessagePart = status === 'success' ?
             `✅ <b>Deployment successful on branch:</b> <i>${githubData.ref.split('/').pop()}</i>` :
