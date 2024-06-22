@@ -38154,7 +38154,7 @@ async function sendNotification() {
         const numbers = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟'];
         const commitsList = githubData.commits.map((commit, index) => `  ${numbers[index]} <u><a href="${commit.url}">${commit.message}</a></u>`).join('\n');
 
-        const commitsMessagePart = `📝 <b>Commits:</b>\n${commitsList}`;
+        const commitsMessagePart = `<b>Commits:</b>\n${commitsList}`;
         const repositoryMessagePart = `🖇 <b>Repository:</b> <i><a href="${githubData.repository.html_url}">${githubData.repository.name}</a></i>`;
         const byMessagePart = `<b>By:</b> <i><a href="${githubData.sender.html_url}">${githubData.sender.login}</a></i>`;
 
